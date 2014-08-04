@@ -21,11 +21,11 @@ class TestZKillboard(unittest.TestCase):
 
     def test_single_kill(self):
         headers, data = self.kb.get(killID=40403014)
-        self.assertIsNotNone(data)
+        self.assertFalse(data == None)
         self.assertTrue(isinstance(data, list))
         self.assertTrue(isinstance(data[0], dict))
         self.assertTrue(len(data) == 1)
-        self.assertIn('killID', data[0])
+        self.assertTrue('killID' in data[0])
 
     def test_invalid_modifier(self):
         self.assertRaises(InvalidModifier, self.kb.blah)
