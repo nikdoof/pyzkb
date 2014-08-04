@@ -58,6 +58,7 @@ class ZKillboard(object):
         ('no-items', False),
         ('no-attackers', False),
         ('api-only', False),
+        ('xml', False),
     )
     
     _MODIFIERS = [x for x, y in _MODIFIER_DATA]
@@ -79,11 +80,11 @@ class ZKillboard(object):
                     raise InvalidModifier('%s is a unknown modifier' % mod_name)
                 if args is None and mod_name.lower() in ZKillboard._MODIFIERS_ARGUMENT:
                     raise InvalidModifier('%s requires a argument' % mod_name)
-                if args and isinstance(args, list) and len(list) > 10:
+                if args and isinstance(args, list) and len(args) > 10:
                     raise ValueError('No more than 10 IDs are allowed at a time')
             x = copy.deepcopy(self)
             x._modifiers.append((mod_name, args))
-            if mod_name == 'xml':
+            if mod_name.lower() == 'xml':
                 x._xml_format = True
             return x
         return modifier_func
