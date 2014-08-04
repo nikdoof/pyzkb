@@ -80,6 +80,8 @@ class ZKillboard(object):
                     raise InvalidModifier('%s is a unknown modifier' % mod_name)
                 if args is None and mod_name.lower() in ZKillboard._MODIFIERS_ARGUMENT:
                     raise InvalidModifier('%s requires a argument' % mod_name)
+                if args and mod_name.lower() not in ZKillboard._MODIFIERS_ARGUMENT:
+                    raise InvalidModifier('%s does not require an argument' % mod_name)
                 if args and isinstance(args, list) and len(args) > 10:
                     raise ValueError('No more than 10 IDs are allowed at a time')
             x = copy.deepcopy(self)

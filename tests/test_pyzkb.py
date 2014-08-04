@@ -57,9 +57,9 @@ class TestZKillboard(unittest.TestCase):
         self.assertTrue(len(x._modifiers) == 1)
 
     def test_xml_format_set(self):
-        self.kb.xml()
-        self.assertTrue(len(self.kb._modifiers), 1)
-        self.assertTrue(self.kb._xml_format)
+        x = self.kb.xml()
+        self.assertTrue(len(x._modifiers), 1)
+        self.assertTrue(x._xml_format)
 
     def tearDown(self):
         pass
